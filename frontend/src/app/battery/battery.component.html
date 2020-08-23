@@ -1,0 +1,19 @@
+<mat-list>
+  <h3 mat-subheader>Current Amount</h3>
+
+  <div class="div" *ngFor="let battery of batteries">
+    <h3 class="batteryName">{{battery.name}}</h3>
+    <mat-progress-bar class="progressBar" mode="determinate" [value]="battery.energyRelative"></mat-progress-bar>
+
+  </div>
+
+
+  <mat-divider></mat-divider>
+  <h3 mat-subheader>Amount of Charging / Discharging in W</h3>
+
+  <div style="display: block" class="graph">
+    <canvas mdbChart [chartType]="chartType" [datasets]="chartDatasets" [labels]="chartLabels" [colors]="chartColors"
+      [options]="chartOptions" [legend]="false" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+    </canvas>
+  </div>
+</mat-list>

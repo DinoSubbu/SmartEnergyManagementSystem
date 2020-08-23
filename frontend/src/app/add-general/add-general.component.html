@@ -1,0 +1,159 @@
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+  crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+  integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+  crossorigin=""></script>
+
+<mat-vertical-stepper [linear]=false #stepper>
+  <mat-step [stepControl]="formGroup">
+    <form [formGroup]="formGroup">
+      <ng-template matStepLabel>Name of the {{typeOfObject}}</ng-template>
+      <div class="center">
+        <mat-form-field>
+          <input matInput placeholder="Name" formControlName="name" required>
+        </mat-form-field>
+        <div>
+          <button mat-stroked-button color="primary" matStepperNext>Next</button>
+        </div>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="formGroup">
+    <form [formGroup]="formGroup">
+      <ng-template matStepLabel>
+        Coordinates</ng-template>
+      <div class="center">
+        <mat-form-field>
+          <input matInput type="number" placeholder="Latitude" formControlName="lat" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="number" placeholder="Longitude" formControlName="long" required>
+        </mat-form-field>
+      </div>
+    </form>
+    <div id="mapOuter">
+      <div id="map">
+      </div>
+    </div>
+    <div class="buttonsUnderTheMap">
+      <button mat-button color="primary" matStepperPrevious>Back</button>
+      <button mat-stroked-button color="primary" matStepperNext>Next</button>
+    </div>
+
+
+
+  </mat-step>
+  <mat-step *ngFor="let name of nameOfAttributes | keyvalue" [stepControl]="formGroup">
+    <form [formGroup]="formGroup">
+      <ng-template matStepLabel>{{name.value}}</ng-template>
+      <!-- if current selection is the component field -->
+      <div *ngIf="name.key == 'components'" class="component">
+        <div class="form">
+          <mat-form-field class="full-width">
+            <input matInput [(ngModel)]="componentName" [ngModelOptions]="{standalone: true}"
+              placeholder="Name of Component">
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput [(ngModel)]="componentEst" type="number" maxlength="2" [ngModelOptions]="{standalone: true}"
+              placeholder="Earliest Starting Time">
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput [(ngModel)]="componentLet" type="number" maxlength="2" [ngModelOptions]="{standalone: true}"
+              placeholder="Latest Ending Time">
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput [(ngModel)]="componentE" type="number" [ngModelOptions]="{standalone: true}"
+              placeholder="Power Usage in W">
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput [(ngModel)]="componentLot" type="number" maxlength="2" [ngModelOptions]="{standalone: true}"
+              placeholder="Length of Operation in h">
+          </mat-form-field>
+          <button mat-raised-button color="primary" (click)="addComponent()">Add Component to this Building.</button>
+        </div>
+
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="est">
+            <th mat-header-cell *matHeaderCellDef> EST </th>
+            <td mat-cell *matCellDef="let element"> {{element.est}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="let">
+            <th mat-header-cell *matHeaderCellDef> LET </th>
+            <td mat-cell *matCellDef="let element"> {{element.let}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="e">
+            <th mat-header-cell *matHeaderCellDef> Power </th>
+            <td mat-cell *matCellDef="let element"> {{element.e}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="lot">
+            <th mat-header-cell *matHeaderCellDef> Length </th>
+            <td mat-cell *matCellDef="let element"> {{element.lot}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+
+      <!-- if current selection is the historical data field -->
+      <div *ngIf="name.key == 'historicalData'" class="component">
+        <div class="changeGraph">
+          <mat-form-field>
+            <mat-select placeholder="Select Building Type" [(value)]="buildingType"
+              (selectionChange)="changeBuildingType($event.value)">
+              <mat-option value="household">Household</mat-option>
+              <mat-option value="office">Office Building</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div style="display: block" class="graph">
+          <canvas mdbChart [chartType]="chartType" [datasets]="chartDatasets" [labels]="chartLabels"
+            [colors]="chartColors" [options]="chartOptions" [legend]="false" (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)">
+          </canvas>
+        </div>
+        <div class="explanation">
+          <p>Click on a bar in the chart to change its value. Values are given in W.</p>
+        </div>
+        <mat-form-field class="chartValue">
+          <input matInput [(ngModel)]="valueToChange" [ngModelOptions]="{standalone: true}"
+            placeholder="New value for {{changeChartColumn}}">
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="changeValueForBar()">Change Value for {{changeChartColumn}}.</button>
+
+      </div>
+
+
+
+      <!-- current selection is something else -->
+      <div class="center">
+        <mat-form-field *ngIf="name.key != 'components' && name.key !='historicalData'">
+          <input matInput type="number" placeholder="{{name.value}}" formControlName="{{name.key}}" required>
+        </mat-form-field>
+        <div>
+          <button mat-button color="primary" matStepperPrevious>Back</button>
+          <button mat-stroked-button color="primary" matStepperNext>Next</button>
+        </div>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Add</ng-template>
+    <div class="center">
+      <div>
+
+        <button mat-button color="primary" matStepperPrevious>Back</button>
+        <button mat-stroked-button color="primary" (click)="addPanel()">Add {{typeOfObject}}</button>
+      </div>
+    </div>
+  </mat-step>
+</mat-vertical-stepper>

@@ -1,0 +1,41 @@
+version: '2.2'
+
+services:
+
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_INITDB_SKIP_TZINFO: 1
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: myusr
+      MYSQL_PASSWORD: myusrpass
+    healthcheck:
+      test: mysqladmin -uroot -prootpass ping
+      interval: 2s
+      timeout: 5s
+      retries: 30
+    ports:
+      - "3306:3306"
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080 
+
+  ems:
+    image: ems
+    restart: always
+    build: 
+      network: host
+      context: .
+      dockerfile: ./Dockerfile
+    command: python3 ./startup.py
+    network_mode: "host"
+    ports:
+      - 8081:8081
+    depends_on:
+      db:
+        condition: service_healthy

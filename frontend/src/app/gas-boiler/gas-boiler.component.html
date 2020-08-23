@@ -1,0 +1,53 @@
+<div class="selectBoiler">
+  <mat-form-field>
+    <mat-select placeholder="Select Building" 
+    [(ngModel)]="currentBuilding" (selectionChange)="changeBuilding($event.value)">
+      <mat-option *ngFor="let building of buildings" [value]="building.name">{{building.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div class="latLongInfo" *ngIf="latlongFlag">
+  Latitude: {{latitude}} , Longitude: {{longitude}} 
+</div>
+
+<div *ngIf="gasBoilerDataFlag" class="displayBoilerStatus">
+  <mat-grid-tile>
+    <mat-icon matListIcon>
+      hot_tub
+    </mat-icon>
+    Boiler Operation Statistics
+  </mat-grid-tile>
+  <mat-grid-list cols="1" rowHeight="2:1">
+    <table mat-table [dataSource]="gasBoilerDataSource">
+        <ng-container matColumnDef="timestamp">
+            <th mat-header-cell *matHeaderCellDef> TimeStamp </th>
+            <td mat-cell *matCellDef="let element"> {{element.timestamp}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="hotWaterPower">
+            <th mat-header-cell *matHeaderCellDef> Hot Water Power(W)  </th>
+            <td mat-cell *matCellDef="let element"> {{element.hotWaterPower}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="spaceHeatingPower">
+            <th mat-header-cell *matHeaderCellDef> Space Heating Power(W)  </th>
+            <td mat-cell *matCellDef="let element"> {{element.spaceHeatingPower}} </td>
+         </ng-container>
+
+        <ng-container matColumnDef="powerOutputBoiler">
+            <th mat-header-cell *matHeaderCellDef> Boiler Total Output Power(W)</th>
+            <td mat-cell *matCellDef="let element"> {{element.powerOutputBoiler}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="fuelInputBoiler">
+            <th mat-header-cell *matHeaderCellDef> Boiler Fuel Input(grams)  </th>
+            <td mat-cell *matCellDef="let element"> {{element.fuelInputBoiler}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns[0]; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns[0];"></tr>
+
+    </table>
+</mat-grid-list>
+</div>

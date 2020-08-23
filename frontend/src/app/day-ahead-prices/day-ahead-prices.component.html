@@ -1,0 +1,14 @@
+<div class="changeGraph">
+  <mat-form-field>
+    <mat-select placeholder="Select Chart Type" [(value)]="chartType">
+      <mat-option value="bar">Bar</mat-option>
+      <mat-option value="line">Line</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div  style="display: block" class="graph">
+  <canvas mdbChart [chartType]="chartType" [datasets]="chartDatasets" [labels]="chartLabels" [colors]="chartColors"
+    [options]="chartOptions" [legend]="false" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+  </canvas>
+</div>

@@ -1,0 +1,207 @@
+Header: Content-Type = application/json
+
+POST: http://127.0.0.1:5000/solarpanel/create
+{
+	"name": "solar_1",
+	"lat": "47.745837",
+	"long": "8.105398",
+	"powerCoefficient": 0.5,
+	"area": 15.5,
+	"angleOfModule": 45
+}
+
+POST: http://127.0.0.1:5000/windturbine/create
+{
+	"name": "wind_1",
+	"lat": "48.745837",
+	"long": "10.105398",
+	"powerCoefficient": 0.5,
+	"radius": 5
+}
+
+POST: http://127.0.0.1:5000/battery/create
+{
+	"name": "battery_1",
+	"lat": "48.745837",
+	"long": "9.105398",
+	"batteryEfficiency": 0.5,
+	"chargeUpperBound": 2.5,
+	"dischargeUpperBound": 3.5,
+	"energyUpperBound": 7.5,
+	"selfDischargingRate": 0.1
+}
+
+POST: http://127.0.0.1:5000/building/create
+{
+	"name": "office_1",
+	"lat": "48.745837",
+	"long": "9.105398",
+	"historicalData": [
+		32.9545431,
+		32.3050214,
+		30.8839031,
+		30.6693376,
+		30.2934311,
+		30.13018,
+		28.9894943,
+		28.9245014,
+		30.2816952,
+		36.0625,
+		42.4732906,
+		64.3429533,
+		52.1487252,
+		58.1452432,
+		56.5970644,
+		50.9325284,
+		52.5544979,
+		50.1969489,
+		46.2843443,
+		42.6922425,
+		40.7198214,
+		38.5555357,
+		36.0615708,
+		34.1428935
+	],
+	"components": [
+		{
+			"name": "dish_washer_1",
+			"est": 9,
+			"let": 18,
+			"e": 1.8,
+			"lot": 2
+		},
+		{
+			"name": "dish_washer_2",
+			"est": 9,
+			"let": 12,
+			"e": 1.8,
+			"lot": 2
+		},
+		{
+			"name": "dish_washer_3",
+			"est": 9,
+			"let": 12,
+			"e": 1.8,
+			"lot": 2
+		},
+		{
+			"name": "dish_washer_4",
+			"est": 9,
+			"let": 12,
+			"e": 1.8,
+			"lot": 2
+		},
+		{
+			"name": "vacuum_cleaner_1",
+			"est": 7,
+			"let": 10,
+			"e": 1.2,
+			"lot": 1
+		},
+		{
+			"name": "vacuum_cleaner_2",
+			"est": 7,
+			"let": 9,
+			"e": 1.2,
+			"lot": 1
+		},
+		{
+			"name": "vacuum_cleaner_3",
+			"est": 19,
+			"let": 21,
+			"e": 1.2,
+			"lot": 1
+		},
+		{
+			"name": "vacuum_cleaner_4",
+			"est": 19,
+			"let": 23,
+			"e": 1.2,
+			"lot": 1
+		},
+		{
+			"name": "electrical_vehicle_1",
+			"est": 8,
+			"let": 18,
+			"e": 3.5,
+			"lot": 3
+		},
+		{
+			"name": "electrical_vehicle_2",
+			"est": 18,
+			"let": 24,
+			"e": 3.5,
+			"lot": 3
+		}
+	]
+}
+
+POST: http://127.0.0.1:5000/building/create
+{
+	"name": "home_1",
+	"lat": "48.745837",
+	"long": "9.105398",
+	"historicalData": [
+		0.3321709,
+		0.262819,
+		0.2343779,
+		0.2292816,
+		0.2354617,
+		0.2551405,
+		0.2834671,
+		0.4321225,
+		0.5343769,
+		0.5596205,
+		0.6084645,
+		0.5859718,
+		0.6483234,
+		0.6688364,
+		0.5575756,
+		0.5267263,
+		0.5505535,
+		0.5298151,
+		0.6413157,
+		0.754156,
+		0.7825452,
+		0.7409206,
+		0.5974084,
+		0.4756613
+	],
+	"components": [
+		{
+			"name": "washing_machine",
+			"est": 9,
+			"let": 17,
+			"e": 2,
+			"lot": 2
+		},
+		{
+			"name": "dish_washer",
+			"est": 9,
+			"let": 12,
+			"e": 1.8,
+			"lot": 2
+		},
+		{
+			"name": "spin_dryer",
+			"est": 13,
+			"let": 18,
+			"e": 2.5,
+			"lot": 1
+		},
+		{
+			"name": "electrical_vehicle",
+			"est": 18,
+			"let": 24,
+			"e": 3.5,
+			"lot": 3
+		},
+		{
+			"name": "vacuum_cleaner",
+			"est": 9,
+			"let": 17,
+			"e": 1.2,
+			"lot": 1
+		}
+	]
+}

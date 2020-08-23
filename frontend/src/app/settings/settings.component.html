@@ -1,0 +1,29 @@
+<mat-list>
+  <h3 mat-subheader>Optimizer Settings</h3>
+  <div class="changeGraph">
+    <mat-form-field>
+      <mat-select placeholder="Select Optimization Goal" [(value)]="optimization"
+        (selectionChange)="changeOptimization($event.value)">
+        <mat-option value="cost">Minimize cost.</mat-option>
+        <mat-option value="independent">Independent from main grid.</mat-option>
+        <mat-option value="min_buy">Minimize purchased energy from main grid.</mat-option>
+
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <mat-divider></mat-divider>
+  <h3 mat-subheader>Change URLs</h3>
+  <div class="form">
+    <mat-form-field class="full-width">
+      <input matInput [(ngModel)]="frontendUrl" placeholder="Frontend-Service">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput [(ngModel)]="simulationUrl" placeholder="Simulation">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput [(ngModel)]="optimizerUrl" placeholder="Optimizer">
+    </mat-form-field>
+    <button class="full-width" mat-stroked-button color="primary" (click)="updateUrls()">Update URLs.</button>
+  </div>
+</mat-list>

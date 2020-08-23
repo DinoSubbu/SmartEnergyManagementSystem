@@ -1,0 +1,48 @@
+.disabled {
+  color: gray !important;
+  cursor: not-allowed !important;  
+}
+.footer {
+  position: absolute;
+  bottom: 10px;  
+  height: 5rem;            /* Footer height */
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+  }
+
+  .settings-button {
+    width: 100%;
+    text-align: left;
+    padding: 10px;
+  }
+  
+  .sidenav-content {
+    // display: flex;
+    // height: 100%;
+    //  padding: 20px;
+    align-items: center;
+    justify-content: center;
+    
+  }
+  
+  .sidenav {
+    // padding: 20px;
+  }
+
+.footer {
+  position: absolute;
+  bottom: 0;  
+  height: 2.5rem;            /* Footer height */
+}
+
+button {
+  width: 100%;
+  text-align: left;
+}
+
+.sidemenu-options {
+  overflow: hidden;
+}

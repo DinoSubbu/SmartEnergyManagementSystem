@@ -1,0 +1,73 @@
+#mapOuter {
+    height: 600px;
+    
+    // width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin: 0px auto;
+}
+
+#map {
+    width: 100%;
+    overflow: auto;
+    height: 100%;
+    margin:20px;
+}
+.buttonsUnderTheMap {
+    padding: 20px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+.center {
+    padding-left: 30px;   
+    
+}
+
+.width {
+    width: 100%;
+    background-color: black;
+    
+}
+
+.form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    float: left;
+    padding-right:50px;
+}
+  
+.full-width {
+    width: 100%;
+}
+
+.component {
+    margin: 30px;
+}
+
+.explanation {
+    float: right;
+    width: 40%;
+}
+
+.chartValue {
+    width: 40%;
+}
+
+table {
+    width: 40%;
+}
+
+.graph {
+    width:60%;
+    float: left;
+}
+.changeGraph {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+  }
+  
+  .changeGraph > * {
+    width: 100%;
+  }

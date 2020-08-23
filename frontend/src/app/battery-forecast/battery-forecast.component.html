@@ -1,0 +1,28 @@
+<mat-list>
+  <h3 mat-subheader>Energy Level Chart</h3>
+  <!-- energy level chart -->
+  <div style="display: block" class="graph">
+    <canvas mdbChart [chartType]="chartType" [datasets]="chartDatasets" [labels]="chartLabels" [colors]="chartColors"
+      [options]="chartOptions" [legend]="true" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+    </canvas>
+  </div>
+
+  <mat-divider></mat-divider>
+  <h3 mat-subheader>Process of Charging</h3>
+
+  <div class="changeGraph">
+    <mat-form-field>
+      <mat-select placeholder="Select Battery" [(ngModel)]="currentBattery"
+        (selectionChange)="changeBattery($event.value)">
+        <mat-option *ngFor="let battery of batteries" [value]="battery">{{battery}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- charging / discharging chart -->
+  <div style="display: block" class="graph">
+    <canvas mdbChart [chartType]="batteryChartType" [datasets]="batteryChartDatasets" [labels]="batteryChartLabels"
+      [colors]="batteryChartColors" [options]="batteryChartOptions" [legend]="true" (chartHover)="chartHovered($event)"
+      (chartClick)="chartClicked($event)">
+    </canvas>
+  </div>

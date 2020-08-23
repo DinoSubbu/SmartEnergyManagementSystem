@@ -1,0 +1,16 @@
+.graph {
+    padding: 20px;
+    padding-left: 60px;
+    width: 60%;
+}
+
+.changeGraph {
+    display: flex;
+    flex-direction: column;
+    margin-left: 60px;
+    padding-right: 0px;
+  }
+  
+  .changeGraph > * {
+    width: 62%;
+  }

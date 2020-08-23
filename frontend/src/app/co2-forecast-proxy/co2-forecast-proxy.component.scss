@@ -1,0 +1,14 @@
+.graph {
+    padding: 20px;
+}
+
+.changeGraph {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  padding-bottom: 0px;
+}
+
+.changeGraph > * {
+  width: 100%;
+}

@@ -1,0 +1,145 @@
+<mat-drawer-container class="container" autosize>
+    <mat-drawer #drawer class="sidenav" mode="side" opened=true>
+        <mat-toolbar color="primary">
+            <mat-toolbar-row>
+                <h2> Microgrid </h2>
+            </mat-toolbar-row>
+
+        </mat-toolbar>
+        <mat-nav-list>
+
+            <button matSubheader mat-button (click)="toggleCreate()"> Create </button>
+            <div [@openClose]="createOpen ? 'open' : 'closed'" class="sidemenu-options">
+
+                <a mat-list-item [ngClass]="{'disabled': creationFinished}" routerLink='/addBuilding'
+                    routerLinkActive="list-item-active">
+                    <mat-icon matListIcon>store_mall_directory </mat-icon>
+                    Add Building
+                </a>
+                <a mat-list-item [ngClass]="{'disabled': creationFinished}" routerLink='/addSolar'
+                    routerLinkActive="list-item-active">
+                    <mat-icon matListIcon>wb_sunny </mat-icon>
+                    Add Solar Power Plant
+                </a>
+                <a mat-list-item [ngClass]="{'disabled': creationFinished}" routerLink='/addWindTurbine'
+                    routerLinkActive="list-item-active">
+                    <mat-icon matListIcon>toys </mat-icon>
+                    Add Wind Turbine
+                </a>
+                <a mat-list-item [ngClass]="{'disabled': creationFinished}" routerLink='/addBattery'
+                    routerLinkActive="list-item-active">
+                    <mat-icon matListIcon>battery_charging_full </mat-icon>
+                    Add Battery
+                </a>
+                <a mat-list-item *ngIf="!creationFinished" (click)="initSimulation()">
+                    <mat-icon matListIcon>publish</mat-icon>
+                    Creation Finished
+                </a>
+                <a mat-list-item *ngIf="creationFinished" (click)="undoInitSimulation()">
+                    <mat-icon matListIcon>undo</mat-icon>
+                    Undo Creation Finished
+                </a>
+            </div>
+            <mat-divider></mat-divider>
+        </mat-nav-list>
+        <mat-divider></mat-divider>
+
+        <mat-nav-list>
+
+            <button matSubheader mat-button (click)="toggleShow()"> Data</button>
+            <div [@openClose]="showOpen ? 'open' : 'closed'" class="sidemenu-options">
+                <a mat-list-item routerLink='/entities' routerLinkActive="list-item-active">
+                    <mat-icon matListIcon>home</mat-icon>
+                    Entities
+                </a>
+                <a mat-list-item routerLink='/batteryState' routerLinkActive="list-item-active">
+                    <mat-icon matListIcon>battery_alert</mat-icon>
+                    Battery State
+                </a>
+                <a mat-list-item routerLink='/gasBoilerState' routerLinkActive="list-item-active">
+                    <mat-icon matListIcon>hot_tub</mat-icon>
+                    Gas Boiler State
+                </a>
+                <a mat-list-item routerLink='/scheduleDeviation' routerLinkActive="list-item-active">
+                    <mat-icon matListIcon>compare_arrows</mat-icon>
+                    Schedule Deviation
+                </a>
+                <a mat-list-item routerLink='/currentGeneration' routerLinkActive="list-item-active">
+                    <mat-icon matListIcon>power_input</mat-icon>
+                    Generation
+                </a>
+                <a mat-list-item routerLink='/demand' routerLinkActive="list-item-active">
+                    <mat-icon matListIcon>power_settings_new</mat-icon>
+                    Demand
+                </a>
+                <a mat-list-item routerLink='/currentOverview' routerLinkActive="list-item-active">
+                    <mat-icon matListIcon>select_all</mat-icon>
+                    Current Overview
+                </a>
+
+
+            </div>
+        </mat-nav-list>
+        <mat-divider></mat-divider>
+
+        <mat-nav-list>
+
+            <button matSubheader mat-button (click)="toggleForecast()"> Forecast </button>
+            <div [@openClose]="forecastOpen ? 'open' : 'closed'" class="sidemenu-options">
+                <a mat-list-item routerLink='/dayAheadPrices' routerLinkActive="list-item-active">
+                    <mat-icon matListIcon>attach_money</mat-icon>
+                    Day-ahead Prices
+                </a>
+                <a mat-list-item routerLink='/energyGeneration' routerLinkActive="list-item-active">
+                    <mat-icon matListIcon>timeline</mat-icon>
+                    Energy Generation
+                </a>
+                <a mat-list-item routerLink='/co2ForecastProxy' routerLinkActive="list-item-active">
+                    <mat-icon matListIcon>bubble_chart</mat-icon>
+                    Co2 Emission
+                </a>
+
+            </div>
+        </mat-nav-list>
+        <mat-divider></mat-divider>
+
+        <mat-nav-list>
+
+            <button matSubheader mat-button (click)="toggleSchedule()"> Schedule </button>
+            <div [@openClose]="scheduleOpen ? 'open' : 'closed'" class="sidemenu-options">
+
+                <a mat-list-item routerLink='/componentsSchedule' routerLinkActive="list-item-active">
+                    <mat-icon matListIcon>schedule</mat-icon>
+                    Components
+                </a>
+                <a mat-list-item routerLink='/batterySchedule' routerLinkActive="list-item-active">
+                    <mat-icon matListIcon>battery_unknown</mat-icon>
+                    Battery
+                </a>
+                <a mat-list-item routerLink='/schedule' routerLinkActive="list-item-active">
+                    <mat-icon matListIcon>swap_horiz</mat-icon>
+                    Exchange Main Grid
+                </a>
+            </div>
+        </mat-nav-list>
+
+        <mat-divider></mat-divider>
+
+
+        <mat-nav-list>
+            <div class="sidemenu-options">
+                <a class="footer" mat-list-item routerLink='/settings' routerLinkActive="list-item-active">
+                    <mat-icon matListIcon>settings</mat-icon>
+                    Settings
+                </a>
+            </div>
+        </mat-nav-list>
+
+
+    </mat-drawer>
+
+    <div class="sidenav-content">
+        <router-outlet></router-outlet>
+    </div>
+
+</mat-drawer-container>

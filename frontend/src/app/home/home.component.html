@@ -1,0 +1,172 @@
+<mat-grid-list cols="2" rowHeight="100px">
+    <mat-grid-tile>
+        <mat-icon matListIcon>wb_sunny</mat-icon>
+        Solar Panels
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-icon matListIcon>toys</mat-icon>
+        Wind Turbines
+    </mat-grid-tile>
+    <mat-grid-tile rowspan="3">
+        <div class="table-container mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource[0]">
+
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="lat">
+                    <th mat-header-cell *matHeaderCellDef> Latitude </th>
+                    <td mat-cell *matCellDef="let element"> {{element.lat}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="long">
+                    <th mat-header-cell *matHeaderCellDef> Longitude </th>
+                    <td mat-cell *matCellDef="let element"> {{element.long}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="powerCoefficient">
+                    <th mat-header-cell *matHeaderCellDef> Power Coefficient </th>
+                    <td mat-cell *matCellDef="let element"> {{element.powerCoefficient}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="area">
+                        <th mat-header-cell *matHeaderCellDef> Area in m<sup>2</sup></th>
+                        <td mat-cell *matCellDef="let element"> {{element.area}} </td>
+                    </ng-container>
+
+                <ng-container matColumnDef="angleOfModule">
+                    <th mat-header-cell *matHeaderCellDef> Angle Of Module in °</th>
+                    <td mat-cell *matCellDef="let element"> {{element.angleOfModule}} </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns[0]; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns[0];"></tr>
+
+            </table>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile rowspan="3">
+        <div class="table-container mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource[1]">
+
+                <ng-container matColumnDef="name" sticky>
+                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="lat">
+                    <th mat-header-cell *matHeaderCellDef> Latitude </th>
+                    <td mat-cell *matCellDef="let element"> {{element.lat}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="long">
+                    <th mat-header-cell *matHeaderCellDef> Longitude </th>
+                    <td mat-cell *matCellDef="let element"> {{element.long}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="powerCoefficient">
+                    <th mat-header-cell *matHeaderCellDef> Power Coefficient </th>
+                    <td mat-cell *matCellDef="let element"> {{element.powerCoefficient}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="radius">
+                    <th mat-header-cell *matHeaderCellDef> Radius in m </th>
+                    <td mat-cell *matCellDef="let element"> {{element.radius}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns[1]; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns[1];"></tr>
+            </table>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+            <mat-icon matListIcon>business</mat-icon>
+            Buildings
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-icon matListIcon>battery_full</mat-icon>
+            Batteries
+        </mat-grid-tile>
+        <mat-grid-tile rowspan="3">
+            <div class="table-container mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource[2]">
+    
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef> Name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+    
+                    <ng-container matColumnDef="lat">
+                        <th mat-header-cell *matHeaderCellDef> Latitude </th>
+                        <td mat-cell *matCellDef="let element"> {{element.lat}} </td>
+                    </ng-container>
+    
+                    <ng-container matColumnDef="long">
+                        <th mat-header-cell *matHeaderCellDef> Longitude </th>
+                        <td mat-cell *matCellDef="let element"> {{element.long}} </td>
+                    </ng-container>
+    
+                    <ng-container matColumnDef="historicalData">
+                        <th mat-header-cell *matHeaderCellDef> Demand profile </th>
+                        <td mat-cell *matCellDef="let element"> {{element.historicalData}} </td>
+                    </ng-container>
+    
+                    <ng-container matColumnDef="components">
+                        <th mat-header-cell *matHeaderCellDef> Components </th>
+                        <td mat-cell *matCellDef="let element"> {{element.components}} </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns[2]; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns[2];"></tr>
+    
+                </table>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile rowspan="3">
+            <div class="table-container mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource[3]">
+    
+                    <ng-container matColumnDef="name" sticky>
+                        <th mat-header-cell *matHeaderCellDef> Name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+    
+                    <ng-container matColumnDef="lat">
+                        <th mat-header-cell *matHeaderCellDef> Latitude </th>
+                        <td mat-cell *matCellDef="let element"> {{element.lat}} </td>
+                    </ng-container>
+    
+                    <ng-container matColumnDef="long">
+                        <th mat-header-cell *matHeaderCellDef> Longitude </th>
+                        <td mat-cell *matCellDef="let element"> {{element.long}} </td>
+                    </ng-container>
+    
+                    <ng-container matColumnDef="batteryEfficiency">
+                        <th mat-header-cell *matHeaderCellDef> Efficiency </th>
+                        <td mat-cell *matCellDef="let element"> {{element.batteryEfficiency}} </td>
+                    </ng-container>
+    
+                    <ng-container matColumnDef="chargeUpperBound">
+                        <th mat-header-cell *matHeaderCellDef> Charge Bound in W</th>
+                        <td mat-cell *matCellDef="let element"> {{element.chargeUpperBound}} </td>
+                    </ng-container>
+    
+                    <ng-container matColumnDef="dischargeUpperBound">
+                        <th mat-header-cell *matHeaderCellDef> Discharge Bound in W</th>
+                        <td mat-cell *matCellDef="let element"> {{element.dischargeUpperBound}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="energyUpperBound">
+                        <th mat-header-cell *matHeaderCellDef> Energy Upper Bound in Wh</th>
+                        <td mat-cell *matCellDef="let element"> {{element.energyUpperBound}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="selfDischargingRate">
+                        <th mat-header-cell *matHeaderCellDef> Self Discharging Rate in W</th>
+                        <td mat-cell *matCellDef="let element"> {{element.selfDischargingRate}} </td>
+                    </ng-container>
+    
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns[3]; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns[3];"></tr>
+                </table>
+            </div>
+        </mat-grid-tile>
+</mat-grid-list>

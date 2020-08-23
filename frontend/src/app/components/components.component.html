@@ -1,0 +1,20 @@
+<div class="changeGraph">
+  <mat-form-field>
+    <mat-select placeholder="Select Building" [(ngModel)]="currentBuilding" (selectionChange)="changeBuilding($event.value)">
+      <mat-option *ngFor="let building of buildings" [value]="building">{{building}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div style="display: block" class="graph">
+  <canvas mdbChart
+      [chartType]="chartType"
+      [datasets]="chartDatasets"
+      [labels]="chartLabels"
+      [colors]="chartColors"
+      [options]="chartOptions"
+      [legend]="true"
+      (chartHover)="chartHovered($event)"
+      (chartClick)="chartClicked($event)">
+  </canvas>
+</div>
